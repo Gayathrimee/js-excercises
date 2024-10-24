@@ -67,4 +67,17 @@ console.log(concatenate('aabc','ddef'))
 
 // 9.
 const nearestTo100 = (a,b) => (100-a) < (100-b) ? a : b
-console.log(nearestTo100('20','30'))
+console.log(nearestTo100('120','130'))
+
+// 10.
+const countChars = (str,char) =>
+   str.split('').filter(ch => ch=== char).length
+
+const count2To4 = (str,char) =>
+   countChars(str,char) >=2 && countChars(str,char) <= 4
+
+console.log(count2To4('ooooooh','o'))
+console.log(count2To4('ooo0h','o'))
+console.log(count2To4('oh','o'))
+
+// or

@@ -122,3 +122,10 @@ console.log(nearValue('100','0'))
 
 // 10. check a given string contains  2 to 4 occurence of a specified character.
 
+const stringOccurence = (str,val) => str
+                .split('')
+                .map(char => char.contains(val))
+                .filter(val.length)
+                .join('')
+            
+console.log(stringOccurence('containsss','s'))
