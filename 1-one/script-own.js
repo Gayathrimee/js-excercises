@@ -22,7 +22,8 @@ if(a === 100 || b === 100 || a + b === 100){
     isChecked = false
 }
 
-// console.log(isChecked)
+console.log(isChecked)
+// right
 // ------------------------
 
 // 2. write a js pgm to get the extension of a filename 
@@ -54,7 +55,7 @@ const today = `${day < 10 ? '0' + day: day}-${month < 10 ? '0' + month: month}-$
 // return today
 
 console.log(today)
-
+// right
 // ------------------------
 
 // 5. Write a js pgm to create a new string adding 'New!' if front of a given string. If the given string begins with 
@@ -85,6 +86,8 @@ console.log(today)
 
 // don't know
 
+// ------------------------
+
 // 7. Extract 1st half of a string of even length
 
 const firstHalf = (str) => 
@@ -92,13 +95,17 @@ const firstHalf = (str) =>
 
 console.log(firstHalf('abcdesdf'))      //this returns esdf, but since we need 1st half, we need to write (0, str.le...)
 console.log(firstHalf('abcdesdfg'))      //this returns whole word
+// not that right, but almost there
 
+// ------------------------
 
 // 8. Concatenate 2 strings except their 1st character
 
 const Concatenate = (a,b) => a.slice(1) + ' ' + b.slice(1)
-
 console.log(Concatenate('mnew','mbag'))
+// right
+
+// ------------------------
 
 // 9. given 2 values, find out which one is nearest to 100
 
@@ -120,12 +127,84 @@ const nearValue = (a,b) =>{
 console.log(nearValue('100','0'))
 // wrong
 
+// ------------------------
+
 // 10. check a given string contains  2 to 4 occurence of a specified character.
 
-const stringOccurence = (str,val) => str
-                .split('')
-                .map(char => char.contains(val))
-                .filter(val.length)
-                .join('')
+// const stringOccurence = (str,val) => str
+//                 .split('')
+//                 .map(char => (val))
+//                 .filter(val.length)
+//                 .join('')
             
-console.log(stringOccurence('containsss','s'))
+// console.log(stringOccurence('containsss','s'))
+
+// ------------------------
+
+// 11. find the number of even digits in an array of integers
+
+const evenIntegers = (str) => parseInt(str.split('')) 
+
+// 12. Find the no. of even values upto a given no.
+// eg: given no-5, even no.s upto 5 are 2,4 i.e 2 no.s
+
+const countNums = (num) => num.split('').filter(ch => ch % 2 === 0).length
+const uptoEvenNums = (num) => Array.from(countNums(num) < num.length)
+
+console.log(uptoEvenNums(''))
+
+// ------------------------
+
+//13. Check whether a given array of integers is sorted in ascending order
+const ascendingNums = (arr) => Array.from(arr.map(num => num < num + 1 ? num : num + 1))
+
+console.log(ascendingNums([1,10,9,6,5]))
+
+// ------------------------
+
+// 14. get the largest even no. from an array of integers.
+
+const largestNum = (arr) => arr.filter(num => num)
+
+// 15. Replace the 1st digit in a string (should contains at least digit) with $ character
+
+const digits = (arr) => arr.replace(arr.split(1), '$')
+console.log(digits('1fdfjid'))
+console.log(digits('fdfjid'))            
+
+// 16. given a year, report if it is a leap year
+
+const leapYear = (str) => {
+    if(str % 4 === 0)
+        return true
+
+    else return false
+}
+
+console.log(leapYear('2001'))
+
+// ------------------------
+
+// 17. Compare 2 objects to determine if the 1st one contains the same properties as the 
+//      2nd one (which may also have additional properties)
+// don't know
+
+// ------------------------
+
+// 18. Convert a comma-seperated values (csv) string to a 2D array. A new line indicates a new row in the array.
+// eg: 
+//      abc,def,ghi
+//      jkl,mno,pqr
+//      stu,vwx,yza
+
+// don't know
+
+// 19. Generate a random hexadecimal color code.
+// eg: #ff033
+
+const randomColor = (clr) => Math.random()
+
+// 20. write a fn that returns true if the provided predicate fn returns true for al elements in a collection, false otherwise.
+// eg: [1,2,3,4,5], (x) => x > 0 returns true cuz all are > 0
+
+// don't know
