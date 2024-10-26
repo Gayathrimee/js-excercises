@@ -208,3 +208,30 @@ const randomColor = (clr) => Math.random()
 // eg: [1,2,3,4,5], (x) => x > 0 returns true cuz all are > 0
 
 // don't know
+
+//21. write a fn that returns a passed string with letters in alphabetical order.
+// eg sting: 'webmaster', expected output: 'abeemrstw'
+
+const orderedString = (str,idx) => str.split('').map(str[idx]).join('')
+console.log(orderedString('webmaster'))
+
+// 22. fn that accepts a string as a parameter and counts the number of vowels within the string.
+
+let vowels = ['a','e','i','o','u']
+
+const countVowels = (str) => str.split('').sort((a) => a === vowels[idx]).length
+console.log(countVowels('adfasdiow'))
+
+// 23. convert an amount to coins. 
+//eg Input: 46 and possible coins 25,10,5,2,1
+//   Output: 25,10,10,1
+
+//don't know
+
+//24. extract unique characters from a string.
+//didn't get the logic
+
+//25. find the 1st not repeated character
+// eg: 'abacddbec' , output: 'e'
+
+const notRepeats = (str) => str.split('').filter(str.slice())

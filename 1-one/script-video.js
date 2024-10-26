@@ -186,3 +186,48 @@ const isEveryElem = (arr,fn) => {
 
 console.log(isEveryElem([1,2,3,4,5], (x) => x > 0))
 console.log(isEveryElem([1,2,3,4,5], (x) => x > 3))
+
+// 21.
+const alphabeticalOrder = (str) => str.split('').sort((a,b) => a > b ? 1 : -1).join('')
+console.log(alphabeticalOrder('webmaster'))
+
+// 22.
+const countLetters =  (str,letters = ['a','e','i','o','u']) => str
+            .split('')
+            .filter(s => letters.indexOf(s) > -1).length
+
+console.log(countLetters('avddec'))
+console.log(countLetters('avddec',['c','b']))
+
+//23. 
+const countCoins = (money, coins = [25,10,5,2,1]) => {
+   const totalCoins = []
+
+   for(let i = 0; i < coins.length; i++){
+      const thisCoinNum = Math.floor(money / coins[i]);
+         for(let y = 0; y < thisCoinNum; y++){
+            totalCoins.push(thisCoinNum)
+         }
+         money -= coins[i] * thisCoinNum
+   }
+   return totalCoins
+}
+
+console.log(countCoins(46))
+
+//24.
+const getUnique = (str) => str
+            .split('')
+            .filter((item,index,arr) => arr.slice(index + 1).indexOf(item) === -1)
+
+//or
+const getUniqueChars = (str) => [... new Set(str.split(''))]
+
+console.log(getUnique('aaaabbbbbbcccccc'))
+
+//25. 
+const getNonRepeatedCharacters = (str) => str
+                     .split('')
+                     .filter((item,idx,arr) => arr.filter(arrItem => arrItem === item).length === 1
+                  );
+console.log(getNonRepeatedCharacters('ghgfjfjhfv'))
