@@ -42,7 +42,7 @@ const fileExtension = (word) => (word)
 // ... wrong
 // ------------------------
 
-// 4.Write a JS prgm to get the current data.
+// 4.Write a JS prgm to get the current date.
 // Expected output: mm-dd-yyyy or dd-mm-yyyy, dd-mm-yyy
 
 const time = new Date()
@@ -61,23 +61,23 @@ console.log(today)
 // 5. Write a js pgm to create a new string adding 'New!' if front of a given string. If the given string begins with 
 // 'New!' already, then return the original string.
 
-// const newString = 'New!'
+const newString = 'New!'
 
-// const allString = (str) => str.slice(str.firstIndexOf(str))
+const allString = (str) => str.slice(str.firstIndexOf(str))
 
-// console.log(allString('we'))
+console.log(allString('we'))
 
-// // or
+// or
 
-// const nextIndex = (str) => str.slice('')
+const nextIndex = (str) => str.slice('')
 
-// if(!str.contains('New')){
-//     str.add('New')
+if(!str.contains('New')){
+    str.add('New')
 
-//     // return nextIndex
-// } 
+    // return nextIndex
+} 
 
-// console.log(nextIndex('me'))    
+console.log(nextIndex('me'))    
        
 // ------------------------
 
@@ -131,13 +131,13 @@ console.log(nearValue('100','0'))
 
 // 10. check a given string contains  2 to 4 occurence of a specified character.
 
-// const stringOccurence = (str,val) => str
-//                 .split('')
-//                 .map(char => (val))
-//                 .filter(val.length)
-//                 .join('')
+const stringOccurence = (str,val) => str
+                .split('')
+                .map(char => (val))
+                .filter(val.length)
+                .join('')
             
-// console.log(stringOccurence('containsss','s'))
+console.log(stringOccurence('containsss','s'))
 
 // ------------------------
 
