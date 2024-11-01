@@ -90,33 +90,3 @@ console.log(aggregateOrders(orders,'c123'))
 
 
 // 003
-async function retryOperation(operation,retries,callback){
-    for (let attempt = 0; attempt <= retries; attempt ++){
-
-        try{
-            const result = await operation()
-            callback(result)
-            return
-
-        } catch{
-            if(attempt === retries){
-                throw new Error('All retries failed')
-            }
-        }
-    }
-}
-
-async function fetchData(){
-    if(Math.random() < 0.7) throw new Error('Network error')
-    return 'Data received'
-}
-
-function onSuccess(data){
-    console.log('operation successful', data)
-}
-
-retryOperation(fetchData,3,onSuccess)
-    .then(() => console.log('completed'))
-    .catch(() => console.log('All retries failed'))
-
-             
