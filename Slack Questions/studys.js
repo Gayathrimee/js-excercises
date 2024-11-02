@@ -90,3 +90,80 @@ console.log(aggregateOrders(orders,'c123'))
 
 
 // 003
+async function retryOperation(operation, retries, callback) {
+    for (let attempt = 0; attempt < retries; attempt++) {
+      try {
+        const result = await operation();
+        callback(result); // Execute the callback on success
+        return; // Stop retrying after a successful attempt
+      } catch (error) {
+        console.log(`Attempt ${attempt + 1} failed: ${error.message}`);
+        if (attempt === retries - 1) {
+          throw new Error("All retries failed"); // Final rejection if all attempts fail
+        }
+      }
+    }
+  }
+  
+  // Example asynchronous function to simulate fetching data
+  async function fetchData() {
+    if (Math.random() < 0.7) throw new Error("Network error");
+    return "Data received";
+  }
+  
+  // Callback function to handle success
+  function onSuccess(data) {
+    console.log("Operation successful:", data);
+  }
+  
+  // Self-invoking async function to execute the retryOperation
+  (async () => {
+    try {
+      await retryOperation(fetchData, 3, onSuccess);
+      console.log("Completed");
+    } catch (error) {
+      console.log(error.message); // Logs "All retries failed" if all attempts fail
+    }
+  })();
+    
+
+// 004
+class TaskScheduler {
+    constructor(){
+        this.tasks = new Map()      // To store scheduled tasks
+        this.nextId = 1             // To generate unique task IDs
+    }
+
+    // Method to schedule a task
+    scheduleTask(task, delay = 2000){
+        if (typeof task !== 'function'){
+            throw new Error ('The task must be a function')
+        }
+
+        if(delay < 0){
+            throw new Error('Delay cannot be less than 0 milliseconds')
+        }
+
+        const taskId = this.nextId++
+        const taskPromise = new Promise((resolve,reject) =>{
+            const timeoutId = setTimeout(() =>{
+
+                try {
+                    const result = task()
+                    resolve(result)
+                
+                } catch (error){
+                    reject (error)
+                } 
+            }, delay)
+
+            //Store the timeout ID along with the promise in the tasks map
+            this.tasks.set(taskId, { timeoutId, promise: taskPromise})
+        })
+
+        // Return the unique task ID
+        return taskId
+    }
+
+    // Method to cancel a scheduled task
+}

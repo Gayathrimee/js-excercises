@@ -78,3 +78,42 @@ const aggregateOrder = (arr,customerId) =>{
 }
 
 console.log(aggregateOrder(orders, 'c123'))
+
+// =====
+
+async function retryOperation(operation,retries,callback){
+  for(let attempt = 0; attempt < retries; attempt ++){
+
+      try {
+          const result = await operation()
+          callback(result)
+          return 
+
+      } catch (error){
+          console.log(`Attempt ${attempt + 1} failed: ${error.message}`)
+
+          if(attempt === retries - 1){
+              throw new Error ('All retries failed')
+          }
+      }
+  }
+}
+
+async function fetchData(){
+  if(Math.random() < 0.7) throw new Error ('Network error')
+      return 'Data received'
+}
+
+function onSuccess(data){
+  console.log('Operation successful', data)
+}
+
+(async () =>{
+  try {
+      await retryOperation (fetchData, 3, onSuccess)
+      console.log('completed')
+
+  } catch (error){
+      console.log(error.message)
+  }
+}) ();
