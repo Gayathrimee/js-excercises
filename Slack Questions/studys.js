@@ -144,26 +144,65 @@ class TaskScheduler {
             throw new Error('Delay cannot be less than 0 milliseconds')
         }
 
-        const taskId = this.nextId++
+        const taskId = this.nextId++;
+
         const taskPromise = new Promise((resolve,reject) =>{
             const timeoutId = setTimeout(() =>{
 
                 try {
                     const result = task()
                     resolve(result)
-                
+
                 } catch (error){
                     reject (error)
                 } 
+
             }, delay)
 
-            //Store the timeout ID along with the promise in the tasks map
-            this.tasks.set(taskId, { timeoutId, promise: taskPromise})
+            //Store the timeout ID and promise in the tasks map
+            this.tasks.set(taskId, { timeoutId})
         })
 
-        // Return the unique task ID
-        return taskId
+        // Return the both task ID and task promise
+        this.tasks.get(taskId).promise = taskPromise
+        return taskPromise
     }
 
     // Method to cancel a scheduled task
+    cancelTask(taskId){
+        return new Promise ((resolve,reject) =>{
+            const task = this.tasks.get(taskId)
+            if(!task){
+                return reject (new Error('No task found with the given ID'))
+            }
+
+            clearTimeout(task.timeoutId)    // clear the timeout
+            this.tasks.delete(taskId)       // Remove the task from the map
+            resolve('Task was cancelled')   // Resolve with cancellation message
+        })
+    }
 }
+
+// Sample Usage
+const scheduler = new TaskScheduler()
+
+// Define a task
+const myTask = () => {
+    console.log('Task executed!')
+    return 'Task completed successfully!'
+}
+
+// Schedule the task with a 3-second delay
+const taskId = scheduler.scheduleTask(myTask, 3000)
+
+// Cancel the task after 1 second
+setTimeout(() =>{
+    scheduler.cancelTask(taskId)
+    .then(message => console.log(message))
+    .catch(error => console.error(error))
+}, 1000)
+
+// If the task is not cancelled, it will log "Task executed!" after 3 seconds
+scheduler.scheduleTask(myTask,3000)
+         .then(result => console.log(result))
+         .catch(error => console.error(error)) 

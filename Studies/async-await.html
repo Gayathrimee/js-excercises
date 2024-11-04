@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+
+        //==== async
+        const myDisplayer = (e) => document.getElementById('demo').innerHTML = e
+
+        async function myFunction(){
+            return 'hello'      // the fn will automatically wrap it in a promise.  => is same as " Promise.resolve ('hello') "
+        }
+        myFunction().then(      // my function()is called, returning a promise. .then() is used to handle the resolved value of the Promise (ie 'hello')
+            function (value) {myDisplayer(value)}      // inside the .then() block, myDisplayer(value) is called, displaying 'hello' in <p>
+        )
+
+        //==== async await
+        async function myDisplay(){
+            let myPromise = new Promise (function (resolve){
+                resolve('I Love You!')
+            })
+            document.getElementById('demo').innerHTML = await myPromise
+        }
+        myDisplay()
+
+        //==== timeout
+        async function myDisplay(){
+            let myPromise = new Promise (function(resolve) {
+                setTimeout(function() {
+                    resolve('I Love You!!')
+                }, 3000)
+            })
+            document.getElementById('demo').innerHTML = await myPromise;
+        }
+        myDisplay()
+               
+        // ===== waiting for file
+        async function getFile(){
+            let myPromise = new Promise(function(resolve){
+                let req = new XMLHttpRequest()
+                req.open('GET','mycar.html')
+                req.onload = function(){
+
+                    if(req.status == 200){
+                        resolve(req.response)
+                    } else{
+                        resolve('File not Found')
+                        console.error('not found')
+                    }
+                }
+                req.send()
+            })
+
+            document.getElementById('demo').innerHTML = await myPromise
+        }
+
+        getFile()
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+
+    <!-- <button onclick="myFunction()">Try It</button> -->
+    <button onclick="myFunction(4,4)">Try It</button>
+
+    <p class="test"></p>
+    <p class="test"></p>
+
+    <script>
+        // function myFunction(){
+            // document.getElementById('demo').innerHTML = 'paragraph changed'
+        // }
+
+        // document.write(5 + 6) 
+
+        // ===
+        // function myFunction(p1,p2){
+        //     // return p1 * p2
+        //     let result = p1 * p2 
+        //     document.getElementById('demo').innerHTML = result
+        // }
+        // console.log(myFunction(4,3))
+
+        // // another
+        // function myFunction(p1, p2) {
+        // return p1 * p2;
+        // }
+
+        // let result = myFunction(4, 3);
+        // document.getElementById("demo").innerHTML = result;
+
+        // ===
+        // let x = myFunction(3,5)
+        // document.getElementById('demo').innerHTML = x
+
+        // function myFunction(a,b){
+        //     return a * b
+        // }
+
+        // ===   
+        function toCelsius(fahrenheit){
+            return (5/9) * (fahrenheit - 32)
+        }
+        let value = toCelsius(68)
+        console.log(value) 
+        //or
+        console.log(toCelsius(68))         
+        
+        // ===   
+        // Variables declared within a JS fn, become LOCAL to the fn. Local variables can only be accessed from within the fn.
+        console.log("Outside:" + typeof carName)
+
+        function myFunction(){
+            let carName = 'Volvo'
+            
+            console.log("Inside:" + typeof carName + " " + carName)
+        }
+        myFunction()
+
+        // a loop that runs through each item in an array:
+        const fruits = ["Apple","Orange","Pomegranet"]
+        for (x of fruits){
+            console.log(x)
+        }
+
+        // A loop that runs as long as i < 10
+        let i = 0;
+        while(i < 10){
+            console.log(i)
+            i++
+        }
+
+        // Make the loop stop when i is 5
+        for(i = 0; i < 10; i++){
+            console.log(i)
+            if(i == 5){
+                break;
+            }
+        }
+    
+        // Make the loop jump to the next iteration when i is 5
+        for(i = 0; i < 10; i++){
+            if(i == 5){
+                continue;
+            }
+            console.log(i)
+        }
+
+        // Use getElementsByTagName method to find the 1st <p> element, and change its text to 'hello'
+            document.getElementsByTagName('p')[0].innerHTML = 'hello'
+
+        // Change the text of the first element that has the class name 'test'
+            document.getElementsByClassName('test')[0].innerHTML = 'world'
+
+        // Use HTML DOM to change the value of the image's src attribute.
+    </script>
+
+</body>  
+</html>  

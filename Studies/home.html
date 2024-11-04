@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="showTime()">Click me to display time</button>
+    <p id="demo"></p>
+
+    <script>
+        function showTime(){
+            document.getElementById('demo').innerHTML = Date()
+        }
+
+        document.getElementById('demo').innerHTML = 'Hello JS'
+    </script>
+</body>
+</html>

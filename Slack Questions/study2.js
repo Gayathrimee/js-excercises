@@ -79,7 +79,8 @@ const aggregateOrder = (arr,customerId) =>{
 
 console.log(aggregateOrder(orders, 'c123'))
 
-// =====
+// =========
+// 003
 
 async function retryOperation(operation,retries,callback){
   for(let attempt = 0; attempt < retries; attempt ++){
@@ -117,3 +118,15 @@ function onSuccess(data){
       console.log(error.message)
   }
 }) ();
+
+// =========
+// 004
+
+class TaskScheduler {
+    constructor(){
+        this.tasks = new Map()
+        this.nextId = 1
+    }
+
+    
+}
